@@ -42,7 +42,6 @@ public class ArrayUtil {
         }
     }
 
-
     public int minValue(int[] arr) {
         if(arr == null || arr.length == 0) {
             throw new IllegalArgumentException("Invalid input");
@@ -56,9 +55,39 @@ public class ArrayUtil {
         }
         return min;
     }
+    
+    public int findSecondMax(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                secondMax = max;
+                max = arr[i];
+            } else if (arr[i] > secondMax && arr[i] != max) {
+                secondMax = arr[i];
+            }            
+        }
+        return secondMax;
+    }
+
+    public void moveZeros(int[] arr) {
+        int j = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != 0 && arr[j] == 0) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+            if (arr[j] != 0) {
+                j++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         ArrayUtil arrUtil = new ArrayUtil();
-        int[] arr = {3, 8, 4, 7, 2, 6, 5};
+        int[] arr = {3, 8, 0, 7, 2, 0, 5};
         // //print
         // arrUtil.printArray(new int[] {5, 1, 2, 9, 10});
 
@@ -70,9 +99,19 @@ public class ArrayUtil {
         // arrUtil.reverseArry(arr, 0, arr.length - 1);
         // arrUtil.printArray(arr);
 
-        // minimum value
-        int min = arrUtil.minValue(arr);
-        System.out.println(min);
+        // // minimum value
+        // int min = arrUtil.minValue(arr);
+        // System.out.println(min);
+
+        // // second max value
+        // arrUtil.printArray(arr);
+        // int secondMax = arrUtil.findSecondMax(arr);
+        // System.out.println(secondMax);
+
+        // moveZeros
+        arrUtil.printArray(arr);
+        arrUtil.moveZeros(arr);
+        arrUtil.printArray(arr);
     }
 
 }
