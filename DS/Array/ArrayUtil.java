@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 public class ArrayUtil {
 
     public void printArray(int[] arr) {
@@ -85,9 +87,28 @@ public class ArrayUtil {
         }
     }
 
+    
+    public int[] resize(int[] arr, int capacity) {
+        int[] temp = new int[capacity];
+        for (int i = 0; i < arr.length; i++) {
+            temp[i] = arr[i];
+        }
+        return temp;
+    }
+
+    public int findMissing(int[] arr) {
+        int capacity = arr.length + 1;
+        int sum = (capacity * (capacity + 1)) / 2;
+        for(int i = 0; i < arr.length; i++) {
+            sum -= arr[i];
+        }
+        return sum;
+    }
+
+
     public static void main(String[] args) {
         ArrayUtil arrUtil = new ArrayUtil();
-        int[] arr = {3, 8, 0, 7, 2, 0, 5};
+        int[] arr = {1, 2, 4, 3, 6, 7, 8};
         // //print
         // arrUtil.printArray(new int[] {5, 1, 2, 9, 10});
 
@@ -108,10 +129,19 @@ public class ArrayUtil {
         // int secondMax = arrUtil.findSecondMax(arr);
         // System.out.println(secondMax);
 
-        // moveZeros
-        arrUtil.printArray(arr);
-        arrUtil.moveZeros(arr);
-        arrUtil.printArray(arr);
+        // // moveZeros
+        // arrUtil.printArray(arr);
+        // arrUtil.moveZeros(arr);
+        // arrUtil.printArray(arr);
+
+        // // resize
+        // System.out.println("Size of original " + arr.length);
+        // arr = arrUtil.resize(arr, 2 * arr.length);
+        // System.out.println("Size of resized " + arr.length);
+
+        // fineMissing
+        int missingOne = arrUtil.findMissing(arr);
+        System.out.println("Missing one: " + missingOne);
     }
 
 }
