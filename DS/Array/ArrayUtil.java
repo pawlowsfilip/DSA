@@ -86,8 +86,7 @@ public class ArrayUtil {
             }
         }
     }
-
-    
+   
     public int[] resize(int[] arr, int capacity) {
         int[] temp = new int[capacity];
         for (int i = 0; i < arr.length; i++) {
@@ -104,7 +103,6 @@ public class ArrayUtil {
         }
         return sum;
     }
-
 
     public static void main(String[] args) {
         ArrayUtil arrUtil = new ArrayUtil();
@@ -139,9 +137,10 @@ public class ArrayUtil {
         // arr = arrUtil.resize(arr, 2 * arr.length);
         // System.out.println("Size of resized " + arr.length);
 
-        // fineMissing
-        int missingOne = arrUtil.findMissing(arr);
-        System.out.println("Missing one: " + missingOne);
+        // // fineMissing
+        // int missingOne = arrUtil.findMissing(arr);
+        // System.out.println("Missing one: " + missingOne);
+
     }
 
 }
