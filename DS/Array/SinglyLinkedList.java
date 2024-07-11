@@ -81,20 +81,114 @@ public class SinglyLinkedList {
         }
     }
 
+    public ListNode deleteFirst() {
+        if(head == null) {
+            return null;
+        }
+
+        ListNode temp = head;
+        head = head.next;
+        temp.next = null;
+        return temp;
+    }
+
+    public ListNode deleteLast(){
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode current = head;
+        ListNode previous = null;
+
+        while (current.next != null) {
+            previous = current;
+            current = current.next;
+        }
+
+        previous.next = null;
+        return current;
+    }
+
+    public void deleteAtPosition(int position) {
+        if(position == 1) {
+            head = head.next;
+        } else {
+
+            ListNode previous = head;
+            int count = 1;
+            
+            while (count < position - 1) {
+                previous = previous.next;
+                count++;
+            }
+
+            ListNode current = previous.next;
+            previous.next = current.next;
+        }
+    }
+
+    public ListNode reverseList () {
+        ListNode previous = null;
+        ListNode current = head;
+        ListNode next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = previous;
+            previous = current;
+            current = next;
+        }
+        head = previous;
+        return previous;
+    }
+
+    public ListNode middlePoint() {
+        ListNode slowPtr = head;
+        ListNode fastPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            slowPtr = slowPtr.next;
+            fastPtr = fastPtr.next.next;
+        }
+
+        return slowPtr;
+    }
+
+    public ListNode findNthNode(int n) {
+        ListNode refPtr = head;
+        ListNode mainPtr = head;
+        int counter = 0;
+
+        while (counter != n) {
+            refPtr = refPtr.next;
+            counter++;
+        }
+
+        while (refPtr.next != null) {
+            refPtr = refPtr.next;
+            mainPtr = mainPtr.next;
+        }
+
+        return mainPtr;
+    }
+
 
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
 
         sll.head = new ListNode(10);
         ListNode second = new ListNode(1);
-        ListNode third = new ListNode(8);
+        ListNode third = new ListNode(4);
         ListNode fourth = new ListNode(11);
+        ListNode fifth = new ListNode(13);
+
 
 
         // forming a chain
         sll.head.next = second; // 10 -> 1
         second.next = third;    // 10 -> 1 -> 8
         third.next = fourth;    // 10 -> 1 -> 8 -> null
+        fourth.next = fifth;
         sll.printList();
 
         // // print List
@@ -115,8 +209,33 @@ public class SinglyLinkedList {
         // sll.lastInsert(365);
         // sll.printList();
 
-        // position Insert
-        sll.positionInsert(26, 3);
-        sll.printList();
+        // // position Insert
+        // sll.positionInsert(26, 3);
+        // sll.printList();
+
+        // // delete first
+        // sll.deleteFirst();
+        // sll.printList();
+
+        // // delete last
+        // sll.deleteLast();
+        // sll.printList();
+
+        // // insert last
+        // sll.lastInsert(32);
+        // sll.lastInsert(365);
+        // sll.printList();
+        // sll.deleteAtPosition(3);
+        // sll.printList();
+
+        // // reverse list
+        // sll.reverseList();
+        // sll.printList();
+
+        // // middle point
+        // System.out.println(sll.middlePoint().data);
+
+        // find nth position
+        System.out.println(sll.findNthNode(3).data);
     }
 }
