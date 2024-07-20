@@ -172,12 +172,56 @@ public class SinglyLinkedList {
         return mainPtr;
     }
 
+    public ListNode insertInSortedList(int value) {
+        ListNode newNode = new ListNode(value);
+
+        if (head == null) {
+            return newNode;
+        }
+        
+        ListNode current = head;
+        ListNode temp = null;
+
+        while (current != null && current.data < newNode.data) {
+            temp = current;
+            current = current.next;
+        }
+
+        newNode.next = current;
+        temp.next = newNode;
+        
+        return head;
+    }
+
+    public ListNode deleteGivenKey(int key) {
+
+        if (head == null) {
+            return head;
+        }
+
+        ListNode current = head;
+        ListNode temp =null;
+
+        while (current != null && current.data != key) {
+            temp = current;
+            current = current.next;
+        }
+
+        if (current.next == null) {
+            return head;
+        }
+
+        temp.next = current.next;
+
+        return head;
+    }
+
 
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
 
-        sll.head = new ListNode(10);
-        ListNode second = new ListNode(1);
+        sll.head = new ListNode(1);
+        ListNode second = new ListNode(3);
         ListNode third = new ListNode(4);
         ListNode fourth = new ListNode(11);
         ListNode fifth = new ListNode(13);
@@ -235,7 +279,16 @@ public class SinglyLinkedList {
         // // middle point
         // System.out.println(sll.middlePoint().data);
 
-        // find nth position
-        System.out.println(sll.findNthNode(3).data);
+        // // find nth position
+        // System.out.println(sll.findNthNode(3).data);
+
+        // // insert in sorted list
+        // sll.insertInSortedList(6);
+        // sll.printList();
+
+        // delete given key
+        sll.deleteGivenKey(11);
+        sll.printList();
+
     }
 }
