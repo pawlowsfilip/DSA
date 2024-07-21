@@ -216,6 +216,22 @@ public class SinglyLinkedList {
         return head;
     }
 
+    public boolean containsLoop() {
+        ListNode fastPtr = head;
+        ListNode slowPtr = head;
+
+        while (fastPtr != null && fastPtr.next != null) {
+            fastPtr = fastPtr.next.next;
+            slowPtr = slowPtr.next;
+
+            if (slowPtr == fastPtr) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public static void main(String[] args) {
         SinglyLinkedList sll = new SinglyLinkedList();
@@ -286,9 +302,13 @@ public class SinglyLinkedList {
         // sll.insertInSortedList(6);
         // sll.printList();
 
-        // delete given key
-        sll.deleteGivenKey(11);
-        sll.printList();
+        // // delete given key
+        // sll.deleteGivenKey(11);
+        // sll.printList();
+
+        // is a loop
+        System.out.println(sll.containsLoop());
+
 
     }
 }
